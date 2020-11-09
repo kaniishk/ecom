@@ -1,14 +1,15 @@
 {
-  "name": "amazona",
+  "name": "sugandham",
   "version": "1.0.0",
-  "description": "Demo : https://amazonaapp.herokuapp.com/",
-  "main": "index.js",
+  "description": "",
+  "main": "backend/server.js",
   "dependencies": {
     "aws-sdk": "^2.702.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "eslint-plugin-react": "^7.19.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.11",
@@ -29,19 +30,10 @@
   },
   "scripts": {
     "start": "nodemon --watch backend --exec babel-node backend/server.js",
-    "build": "rm -rf dist && babel backend -d dist  && cd frontend && npm install && npm run build",
-    "heroku-postbuild-x": "npm run build && cd frontend && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/basir/amazona.git"
+    "build": "rm -rf dist && babel backend -d dist  && cd frontend && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/basir/amazona/issues"
-  },
-  "homepage": "https://github.com/basir/amazona#readme",
   "engines": {
     "node": "12.4.0",
     "npm": "6.9.0"

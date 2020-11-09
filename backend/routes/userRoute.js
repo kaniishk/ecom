@@ -69,8 +69,8 @@ router.get('/createadmin', async (req, res) => {
   try {
     const user = new User({
       name: 'jatin',
-      email: 'patial@bhanu.com',
-      password: bcrypt.hashSync('1234', 8),
+      email: 'bhanu@patyal.com',
+      password: bcrypt.hashSync('Patyalbhanu22', 8),
       isAdmin: true,
     });
     const newUser = await user.save();
