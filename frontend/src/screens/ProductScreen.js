@@ -122,12 +122,12 @@ function ProductScreen(props) {
             {!product.reviews.length && <div>There is no review</div>}
             <ul className="review" id="reviews">
               {product.reviews.map((review) => (
-                <li key={review._id}>
-                  <div>{review.name}</div>
+                <li key={review._id} style={{border:'.1rem #c0c0c0 solid'}}>
+                  <div style={{fontStyle:'bold', fontSize:'2rem'}}>{review.name}</div>
                   <div>
                     <Rating value={review.rating}></Rating>
                   </div>
-                  <div>{review.createdAt.substring(0, 10)}</div>
+                  <div style={{fontSize:'1rem'}}>{review.createdAt.substring(0, 10)}</div>
                   <div>{review.comment}</div>
                 </li>
               ))}

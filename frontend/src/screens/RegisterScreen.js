@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { register } from '../actions/userActions';
+import { signin,register } from '../actions/userActions';
 
 function RegisterScreen(props) {
 
@@ -16,6 +16,7 @@ function RegisterScreen(props) {
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
   useEffect(() => {
     if (userInfo) {
+      dispatch(signin(email, password));
       props.history.push(redirect);
     }
     return () => {
@@ -25,7 +26,16 @@ function RegisterScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    if (password !== rePassword ) {
+      alert('Password and confirm password do not match');
+    } 
+    else if(password.length < 6){
+      alert('Password must be 6 characters atleast');
+    }
+    else {
+      dispatch(register(name, email, password));
+    }
+    
   }
   return <div className="form">
     <form onSubmit={submitHandler} >
@@ -66,7 +76,7 @@ function RegisterScreen(props) {
         </li>
         <li>
           Already have an account?
-          <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link>
+          <Link to={redirect === "/" ? "signin" : "signin?redirect=" + redirect} className="button secondary text-center" >Sing in here</Link>
 
         </li>
 
