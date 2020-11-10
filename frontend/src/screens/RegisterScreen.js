@@ -14,15 +14,20 @@ function RegisterScreen(props) {
   const dispatch = useDispatch();
 
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+ 
   useEffect(() => {
+    if(error){
+      window.scrollTo(0,50);
+    }
     if (userInfo) {
-      dispatch(signin(email, password));
+      dispatch(signin(email,password));
       props.history.push(redirect);
     }
+   
     return () => {
       //
     };
-  }, [userInfo]);
+  }, [userInfo,error]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -45,30 +50,30 @@ function RegisterScreen(props) {
         </li>
         <li>
           {loading && <div>Loading...</div>}
-          {error && <div>{error}</div>}
+          {error && <div style={{color:'red',fontSize:'3rem'}}>{error} </div>}
         </li>
         <li>
           <label htmlFor="name">
             Name
           </label>
-          <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
+          <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)} required>
           </input>
         </li>
         <li>
           <label htmlFor="email">
             Email
           </label>
-          <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
+          <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} required>
           </input>
         </li>
         <li>
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
+          <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} required>
           </input>
         </li>
         <li>
           <label htmlFor="rePassword">Re-Enter Password</label>
-          <input type="password" id="rePassword" name="rePassword" onChange={(e) => setRePassword(e.target.value)}>
+          <input type="password" id="rePassword" name="rePassword" onChange={(e) => setRePassword(e.target.value)} required>
           </input>
         </li>
         <li>

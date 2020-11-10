@@ -45,23 +45,30 @@ router.post('/signin', async (req, res) => {
 })
 
 
-router.post('/register', async (req, res) => {
-  const user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
-  });
-  const newUser = await user.save();
-  if (newUser) {
-    res.send({
-      _id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-      isAdmin: newUser.isAdmin,
-      token: getToken(newUser),
+router.post('/register' , async (req, res) => {
+  const finduser = await User.findOne({ email: req.body.email });
+  if(finduser){
+    res.status(409).send({message:"Email-Id already exists "});
+  }
+  else{
+    try{
+    const user = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 8),
     });
-  } else {
-    res.status(401).send({ message: 'Invalid User Data.' });
+    const newUser = await user.save();
+      res.status(201).send({
+        _id: newUser.id,
+        name: newUser.name,
+        email: newUser.email,
+        isAdmin: false,
+        token: getToken(newUser),
+      });
+    } catch(error) {
+      res.status(400).send({message:error.message});
+        
+    }
   }
 });
 
