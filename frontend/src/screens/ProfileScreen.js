@@ -75,7 +75,7 @@ function ProfileScreen(props) {
               <button type="submit" className="button primary">Update</button>
             </li>
             <li>
-              <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
+              <button type="button" onClick={handleLogout} className="button secondary full-width" style={{backgroundColor:'brown', color:'whitesmoke'}}>Logout</button>
             </li>
 
           </ul>
@@ -83,6 +83,7 @@ function ProfileScreen(props) {
       </div>
     </div>
     <div className="profile-orders content-margined">
+      <h1>Your Orders: </h1>
       {
         loadingOrders ? <div>Loading...</div> :
           errorOrders ? <div>{errorOrders} </div> :

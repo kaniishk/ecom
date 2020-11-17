@@ -14,7 +14,13 @@ body {
 }
 
 button {
-  font-size: 1.6rem;
+  font-size: large;
+}
+
+.btn-buy{
+  background-color: limegreen;
+  color: whitesmoke;
+  font-size: larger;
 }
 .full-width {
   width: 100%;
@@ -209,6 +215,7 @@ a > .rating > span:last-child {
 .details-image img {
   max-width: 60rem;
   width: 100%;
+  max-height: 45rem;
 }
 .details-info {
   flex: 1 1 30rem;

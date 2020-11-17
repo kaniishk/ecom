@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct, saveProductReview } from '../actions/productActions';
 import Rating from '../components/Rating';
 import { PRODUCT_REVIEW_SAVE_RESET } from '../constants/productConstants';
+import { addToCart } from '../actions/cartActions';
+
 
 function ProductScreen(props) {
   const [qty, setQty] = useState(1);
@@ -44,6 +46,11 @@ function ProductScreen(props) {
     props.history.push('/cart/' + props.match.params.id + '?qty=' + qty);
   };
 
+  const handleBuyNow = () => {
+    dispatch(addToCart(props.match.params.id , qty));
+    props.history.push("/signin?redirect=shipping");
+  };
+
   return (
     <div>
       <div className="back-to-result">
@@ -62,7 +69,7 @@ function ProductScreen(props) {
             <div className="details-info">
               <ul>
                 <li>
-                  <h4>{product.name}</h4>
+                  <h1>{product.name}</h1>
                 </li>
                 <li>
                   <a href="#reviews">
@@ -108,11 +115,23 @@ function ProductScreen(props) {
                   {product.countInStock > 0 && (
                     <button
                       onClick={handleAddToCart}
-                      className="button primary"
+                      className="button primary full-width"
                     >
                       Add to Cart
                     </button>
                   )}
+
+                </li>
+                <li>
+                  {product.countInStock > 0 && (
+                    <button
+                      onClick={handleBuyNow}
+                      className="button btn-buy full-width"
+                    >
+                      Buy Now
+                    </button>
+                  )}
+                  
                 </li>
               </ul>
             </div>
